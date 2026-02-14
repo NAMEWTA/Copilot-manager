@@ -465,7 +465,9 @@ export default function ApiProxy() {
 
     // ⚠️ Copilot 配置更新函数
     const updateCopilotConfig = (updates: Partial<NonNullable<ProxyConfig['copilot']>>) => {
-        const newConfig = {
+        if (!appConfig) return;
+
+        const newConfig: AppConfig = {
             ...appConfig,
             proxy: {
                 ...appConfig.proxy,
