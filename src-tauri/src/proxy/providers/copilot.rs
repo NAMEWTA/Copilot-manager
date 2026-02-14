@@ -45,7 +45,6 @@ pub struct DeviceCodeResponse {
     pub device_code: String,
     pub user_code: String,
     pub verification_uri: String,
-    pub expires_in: u64,
     pub interval: u64,
 }
 
@@ -53,8 +52,6 @@ pub struct DeviceCodeResponse {
 #[derive(Debug, serde::Deserialize)]
 struct OAuthTokenResponse {
     access_token: String,
-    token_type: String,
-    scope: String,
 }
 
 /// Copilot Token 响应
@@ -329,6 +326,7 @@ pub async fn forward_to_copilot(
 }
 
 /// 获取 Copilot 可用模型列表
+#[allow(dead_code)]
 pub async fn get_copilot_models(
     state: &AppState,
 ) -> Result<Value, String> {
